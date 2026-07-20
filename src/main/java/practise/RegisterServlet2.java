@@ -23,7 +23,19 @@ public class RegisterServlet2 extends HttpServlet{
 		request.getRequestDispatcher("/register.jsp").forward(request, response);
 		
 	}
+	@Override
+	protected void doPost(HttpServletRequest request,HttpServletResponse response)
+			throws ServletException ,IOException{
+		request.setCharacterEncoding("UTF-8");
+		String username=request.getParameter("username");
+		String password=request.getParameter("password");
 		
+		if(username==null||username.isBlank()||password==null||password.isBlank()) {
+			request.setAttribute("error","帳號和密碼不能空白");
+			request.getRequestDispatcher("/register.jsp").forward(request, response);
+			
+		}
+	}
 	
 	
 }
