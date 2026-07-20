@@ -13,6 +13,9 @@ import jakarta.servlet.http.HttpServletResponse;
 public class LoginServlet2 extends HttpServlet {
 	private static final long serialVersionUID=1L;
 	
+	private static final String UB_URL= "jdbc:mysql://localhost:3306/jsp_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Taipei";	
+	private static final String UB_USER="jsp_user";
+	private static final String UB_PASSWORd="Cookie1007";
 	@Override
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) 
 			throws ServletException,IOException{
