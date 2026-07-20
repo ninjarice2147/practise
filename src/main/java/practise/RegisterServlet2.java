@@ -33,8 +33,9 @@ public class RegisterServlet2 extends HttpServlet{
 		if(username==null||username.isBlank()||password==null||password.isBlank()) {
 			request.setAttribute("error","帳號和密碼不能空白");
 			request.getRequestDispatcher("/register.jsp").forward(request, response);
-			
+			return;
 		}
+		
 	}
 	
 	
