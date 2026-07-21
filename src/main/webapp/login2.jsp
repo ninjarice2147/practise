@@ -30,5 +30,9 @@
 
         <button type="submit">登入</button>
     </form>
+
+    <p>
+        <a href="register2">註冊新帳號</a>
+    </p>
 </body>
 </html>

@@ -25,7 +25,7 @@
         }
     %>
 
-    <form action="register" method="post">
+    <form action="register2" method="post">
         <p>
             帳號：
             <input type="text" name="username">
@@ -40,7 +40,7 @@
     </form>
 
     <p>
-        <a href="login">回登入頁</a>
+        <a href="LoginPractise">回登入頁</a>
     </p>
 </body>
 </html>

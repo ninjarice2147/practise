@@ -25,7 +25,7 @@ public class RegisterServlet2 extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request,HttpServletResponse response)
 			throws ServletException,IOException {
-		request.getRequestDispatcher("/register.jsp").forward(request, response);
+		request.getRequestDispatcher("/register2.jsp").forward(request, response);
 		
 	}
 	@Override
@@ -37,7 +37,7 @@ public class RegisterServlet2 extends HttpServlet{
 		
 		if(username==null||username.isBlank()||password==null||password.isBlank()) {
 			request.setAttribute("error","帳號和密碼不能空白");
-			request.getRequestDispatcher("/register.jsp").forward(request, response);
+			request.getRequestDispatcher("/register2.jsp").forward(request, response);
 			return;
 		}
 		try {
@@ -49,21 +49,21 @@ public class RegisterServlet2 extends HttpServlet{
 					try(ResultSet rs=checkstmt.executeQuery()){
 						if(rs.next()) {
 							request.setAttribute("error", "帳號已被註冊");
-							request.getRequestDispatcher("/register.jsp")
+							request.getRequestDispatcher("/register2.jsp")
 							.forward(request, response);
 							return;
 						}
 						
 					}
 				}
-				String insertsql ="INSERT INTO  users(username,password,role VALUES(?,?,'user')";
+				String insertsql ="INSERT INTO  users(username,password,role) VALUES(?,?,'user')";
 				try(PreparedStatement insertstmt =conn.prepareStatement(insertsql)){
 					insertstmt.setString(1, username);
 					insertstmt.setString(2, password);
 					insertstmt.executeUpdate();
 				}
 				request.setAttribute("message","註冊成功" );
-				request.getRequestDispatcher("/register.jsp").forward(request, response);
+				request.getRequestDispatcher("/register2.jsp").forward(request, response);
 				
 			}
 			
