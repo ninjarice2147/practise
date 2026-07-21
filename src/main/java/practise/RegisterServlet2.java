@@ -1,9 +1,14 @@
 package practise;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.rmi.ServerException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -35,8 +40,39 @@ public class RegisterServlet2 extends HttpServlet{
 			request.getRequestDispatcher("/register.jsp").forward(request, response);
 			return;
 		}
-		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			try(Connection conn=DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWORD)){
+				String checksql="SELECT id FROM users WHERE username=?";
+				try(PreparedStatement checkstmt=conn.prepareStatement(checksql)){
+					checkstmt.setString(1, username);
+					try(ResultSet rs=checkstmt.executeQuery()){
+						if(rs.next()) {
+							request.setAttribute("error", "帳號已被註冊");
+							request.getRequestDispatcher("/register.jsp")
+							.forward(request, response);
+							return;
+						}
+						
+					}
+				}
+				String insertsql ="INSERT INTO  users(username,password,role VALUES(?,?,'user')";
+				try(PreparedStatement insertstmt =conn.prepareStatement(insertsql)){
+					insertstmt.setString(1, username);
+					insertstmt.setString(2, password);
+					insertstmt.executeUpdate();
+				}
+				request.setAttribute("message","註冊成功" );
+				request.getRequestDispatcher("/register.jsp").forward(request, response);
+				
+			}
+			
+		}
+		catch (Exception e) {
+			throw new ServletException("註冊失敗",e);
+		}
 	}
+
 	
 	
 }
