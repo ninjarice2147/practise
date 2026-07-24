@@ -21,7 +21,7 @@ public class AccountServlet extends HttpServlet{
 	
 	private static final String DB_URL=
 		"jdbc:mysql://localhost:3306/jsp_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Taipei";
-	private static final String DB_USER="jap_user";
+	private static final String DB_USER="jsp_user";
 	private static final String DB_PASSWORD="Cookie1007";
 	
 	@Override
