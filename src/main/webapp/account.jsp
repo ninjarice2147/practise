@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  %>
-<%@ page import="java.util.List"%>
-<%@page import="account_practise.Account" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.List" %>
+<%@ page import="account_practise.Account" %>
 <!DOCTYPE html>
 <html lang="zh-Hant" dir="ltr">
 	<head>
@@ -27,15 +27,28 @@
             <th>功能</th>
         </tr>
         
-        <%	List<Account> account=(List<Account>) request.getAttribute("account");
-			if(account!=null){
-				for(Account accounts:account){
-					String updateFormId= "updateForm"+accounts.getAcc_id();
-					String deleteFormId="deleteForm"+accounts.getAcc_id();
-				}
-			}
-        %>
-        
+        <%
+    List<Account> accounts = (List<Account>) request.getAttribute("accounts");
+
+    if (accounts != null) {
+        for (Account account : accounts) {
+            String updateFormId = "updateForm" + account.getAcc_id();
+            String deleteFormId = "deleteForm" + account.getAcc_id();
+%>
+            <tr>
+                <td>
+                    <%= account.getAcc_id() %>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+<%
+        }
+    }
+%>
     </table>
 	</body>
 	
