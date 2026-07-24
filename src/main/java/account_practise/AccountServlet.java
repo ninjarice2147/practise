@@ -48,7 +48,7 @@ public class AccountServlet extends HttpServlet{
 				
 				
 			}
-			request.setAttribute("account", account);
+			request.setAttribute("accounts", account);
 			request.getRequestDispatcher("/account.jsp").forward(request, response);
 		}catch (Exception e) {
 			throw new ServletException("讀取錯誤",e);
