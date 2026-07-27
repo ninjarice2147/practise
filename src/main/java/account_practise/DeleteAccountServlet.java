@@ -1,11 +1,11 @@
 package account_practise;
 
 import java.io.IOException;
-import java.rmi.ServerException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public class DeleteAccountServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request,HttpServletResponse response)
-	throws ServerException,IOException{
+	throws ServletException,IOException{
 		
 		int accId= Integer.parseInt(request.getParameter("accId"));
 		
@@ -37,7 +37,7 @@ public class DeleteAccountServlet extends HttpServlet {
 			}
 			
 		}catch (Exception e) {
-			throw new ServerException("刪除失敗",e);
+			throw new ServletException("刪除失敗",e);
 		}
 	}
 }

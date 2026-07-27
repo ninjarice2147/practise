@@ -26,13 +26,13 @@ public class AddAccountServlet extends HttpServlet {
 	}
 	
 	@Override
-	protected void doPost(HttpServletRequest request,HttpServletResponse respone)
+	protected void doPost(HttpServletRequest request,HttpServletResponse response)
 			throws ServletException,IOException  {
 		request.setCharacterEncoding("UTF-8");
 		
 		String bank=request.getParameter("bank");
 		String accName=request.getParameter("accName");
-		BigDecimal number=new BigDecimal(request.getParameter("number"));
+		BigDecimal number=new BigDecimal(request.getParameter("amount"));
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -44,7 +44,7 @@ public class AddAccountServlet extends HttpServlet {
 					stmt.setBigDecimal(3, number);
 					stmt.executeUpdate();
 				}
-				
+				response.sendRedirect(request.getContextPath()+"/accounts");
 			}
 		}catch (Exception e) {
 			throw new ServletException("帳號建立失敗",e);

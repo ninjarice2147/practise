@@ -10,14 +10,16 @@
 	
 	<form action="addAccount" method="post">
 		<p>
+			銀行
 			<input type="text" name="bank" required>
 		</p>
 		
 		<p>
+			帳戶名稱
 			<input type="text" name="accName" required>
 		</p>
 		<p>
-		
+			金額
 			<input type="number" name="amount" step="0.01" required>
 		</p>
 		

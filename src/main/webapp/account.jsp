@@ -10,7 +10,7 @@
 	<body>
 		<p>
 			<a href="addAccount">
-				<button type="button"></button>
+				<button type="button">新增帳戶</button>
 			</a>
 		</p>
 		<hr>
@@ -65,7 +65,7 @@
                 <td>
                 	<button type="button" class="edit-update-btn" 
                 	data-form="<%=updateFormId%>" 
-                	data-mod="edit">
+                	data-mode="edit">
                 	修改
                 	</button>
                 	<button form="<%=deleteFormId%>" type="submit"
