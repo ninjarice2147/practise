@@ -2,6 +2,9 @@ package account_practise;
 
 import java.io.IOException;
 import java.rmi.ServerException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,7 +23,21 @@ public class DeleteAccountServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,HttpServletResponse response)
 	throws ServerException,IOException{
 		
+		int accId= Integer.parseInt(request.getParameter("accId"));
 		
-		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			try(Connection conn=DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)){
+				String sql="DELETE FROM account WHERE acc_id = ?";
+				try(PreparedStatement stmt =conn.prepareStatement(sql)){
+					stmt.setInt(1, accId);
+					stmt.executeUpdate();
+				}
+				response.sendRedirect(request.getContextPath()+"/accounts");
+			}
+			
+		}catch (Exception e) {
+			throw new ServerException("刪除失敗",e);
+		}
 	}
 }
